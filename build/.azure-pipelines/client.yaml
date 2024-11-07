@@ -1,3 +1,4 @@
+
 trigger:
 - main
 
@@ -12,6 +13,7 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
+    ls -R /home/vsts/work/1/s
     npm install
     npm run build
   displayName: 'npm install and build'
