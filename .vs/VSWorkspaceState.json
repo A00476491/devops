@@ -1,0 +1,10 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\build",
+    "\\build\\.azure-pipelines",
+    "\\src"
+  ],
+  "SelectedNode": "\\build\\.azure-pipelines\\server.yaml",
+  "PreviewInSolutionExplorer": false
+}
