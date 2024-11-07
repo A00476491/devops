@@ -14,13 +14,14 @@ steps:
 
 - script: |
     ls -R /home/vsts/work/1/s
+    cd /home/vsts/work/1/s/src/reactapp1.client/src/
     npm install
     npm run build
   displayName: 'npm install and build'
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: 'build'
+    PathtoPublish: '/home/vsts/work/1/s/build'
     ArtifactName: 'drop'
     publishLocation: 'Container'
 
