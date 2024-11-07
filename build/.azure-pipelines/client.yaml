@@ -11,7 +11,7 @@ steps:
     versionSpec: '18.20.4'
   displayName: 'Install Node.js'
 
-- script:
+- script: |
     cd src/reactapp1.client
     npm install
     np run build
