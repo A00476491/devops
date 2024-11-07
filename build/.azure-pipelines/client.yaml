@@ -14,7 +14,7 @@ steps:
 - script: |
     cd src/reactapp1.client
     npm install
-    np run build
+    npm run build
   displayName: 'npm install and build'
 
 - task: PublishBuildArtifacts@1
