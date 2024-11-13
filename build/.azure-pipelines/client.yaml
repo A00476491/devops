@@ -1,29 +1,36 @@
-
 trigger:
-- dev
-
+  - dev
+    
 pool:
-  vmImage: ubuntu-latest
-
+  vmImage: 'ubuntu-latest'
+  
+variables:
+  solution: 'src/reactapp1.Server/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+    
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSource: 'spec'
-    versionSpec: '18.20.4'
-  displayName: 'Install Node.js'
-
 - script: |
-    cd src/reactapp1.client
-    npm install
-    npm run build
-  displayName: 'npm install and build'
-
-- task: PublishBuildArtifacts@1
+    mkdir -p ~/.aspnet/https
+  displayName: 'Create HTTPS Certificate Directory'
+       
+- task: DotNetCoreCLI@2
+  displayName: 'Build Project'
   inputs:
-    PathtoPublish: 'build'
+    command: 'build'
+    projects: 'src/reactapp1.Server/*.csproj'
+    arguments: '--configuration $(buildConfiguration)'
+  
+- task: DotNetCoreCLI@2
+  displayName: 'Package build for publishing'
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
+    arguments: '--configuration $(buildConfiguration) --output "$(build.artifactstagingdirectory)"'
+      
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish build artifact'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
     publishLocation: 'Container'
-
-
-
-
