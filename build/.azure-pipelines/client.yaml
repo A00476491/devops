@@ -13,6 +13,7 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
+    cd src/reactapp1.client
     npm install
     npm run build
   displayName: 'npm install and build'
