@@ -4,13 +4,13 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
 trigger:
-  - main
+  - master
     
 pool:
   vmImage: 'ubuntu-latest'
   
 variables:
-  solution: 'src/ReactApp1.Server/*.sln'
+  solution: 'src/MCDA_Project.Server/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
     
@@ -23,7 +23,7 @@ steps:
   displayName: 'Build Project'
   inputs:
     command: 'build'
-    projects: 'src/ReactApp1.Server/*.csproj'
+    projects: 'src/MCDA_Project.Server/*.csproj'
     arguments: '--configuration $(buildConfiguration)'
   
 - task: DotNetCoreCLI@2
