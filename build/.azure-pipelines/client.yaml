@@ -1,5 +1,5 @@
 trigger:
-- dev
+- master
 
 pool:
   vmImage: ubuntu-latest
@@ -8,18 +8,18 @@ steps:
 - task: NodeTool@0
   inputs:
     versionSource: 'spec'
-    versionSpec: '18.20.4'
+    versionSpec: '16.13.1'
   displayName: 'Install Node.js'
 
 - script: |
-    mkdir -p ~/.aspnet/https
-    cd src/reactapp1.client/
+    cd src/mcda_project.client/
     npm install
     npm run build
   displayName: 'npm install and build'
 
+
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: 'build'
+    PathtoPublish: '../../src/mcda_project.client/'
     ArtifactName: 'drop'
     publishLocation: 'Container'
